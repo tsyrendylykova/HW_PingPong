@@ -13,6 +13,7 @@
 		950CEFB1224BBEB3005E7750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950CEFB0224BBEB3005E7750 /* Assets.xcassets */; };
 		950CEFB4224BBEB3005E7750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950CEFB2224BBEB3005E7750 /* LaunchScreen.storyboard */; };
 		950CEFB7224BBEB3005E7750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 950CEFB6224BBEB3005E7750 /* main.m */; };
+		950CF00E224FD092005E7750 /* HWSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 950CF00D224FD092005E7750 /* HWSettingsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		950CEFB3224BBEB3005E7750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		950CEFB5224BBEB3005E7750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950CEFB6224BBEB3005E7750 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		950CF00C224FD092005E7750 /* HWSettingsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HWSettingsView.h; sourceTree = "<group>"; };
+		950CF00D224FD092005E7750 /* HWSettingsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HWSettingsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		950CEFA6224BBEB0005E7750 /* HW_PingPong */ = {
 			isa = PBXGroup;
 			children = (
+				950CF00F224FD0A0005E7750 /* View */,
 				950CEFA7224BBEB0005E7750 /* AppDelegate.h */,
 				950CEFA8224BBEB0005E7750 /* AppDelegate.m */,
 				950CEFAA224BBEB0005E7750 /* ViewController.h */,
@@ -69,6 +73,15 @@
 				950CEFB6224BBEB3005E7750 /* main.m */,
 			);
 			path = HW_PingPong;
+			sourceTree = "<group>";
+		};
+		950CF00F224FD0A0005E7750 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				950CF00C224FD092005E7750 /* HWSettingsView.h */,
+				950CF00D224FD092005E7750 /* HWSettingsView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +156,7 @@
 			files = (
 				950CEFAC224BBEB0005E7750 /* ViewController.m in Sources */,
 				950CEFB7224BBEB3005E7750 /* main.m in Sources */,
+				950CF00E224FD092005E7750 /* HWSettingsView.m in Sources */,
 				950CEFA9224BBEB0005E7750 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
