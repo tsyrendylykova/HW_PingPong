@@ -14,6 +14,7 @@
 		950CEFB4224BBEB3005E7750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950CEFB2224BBEB3005E7750 /* LaunchScreen.storyboard */; };
 		950CEFB7224BBEB3005E7750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 950CEFB6224BBEB3005E7750 /* main.m */; };
 		950CF00E224FD092005E7750 /* HWSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 950CF00D224FD092005E7750 /* HWSettingsView.m */; };
+		95D60B1C2252923F00DBE404 /* HWPingPongGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D60B1B2252923F00DBE404 /* HWPingPongGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		950CEFB6224BBEB3005E7750 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		950CF00C224FD092005E7750 /* HWSettingsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HWSettingsView.h; sourceTree = "<group>"; };
 		950CF00D224FD092005E7750 /* HWSettingsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HWSettingsView.m; sourceTree = "<group>"; };
+		95D60B1A2252923F00DBE404 /* HWPingPongGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HWPingPongGame.h; sourceTree = "<group>"; };
+		95D60B1B2252923F00DBE404 /* HWPingPongGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HWPingPongGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 				950CEFB2224BBEB3005E7750 /* LaunchScreen.storyboard */,
 				950CEFB5224BBEB3005E7750 /* Info.plist */,
 				950CEFB6224BBEB3005E7750 /* main.m */,
+				95D60B1A2252923F00DBE404 /* HWPingPongGame.h */,
+				95D60B1B2252923F00DBE404 /* HWPingPongGame.m */,
 			);
 			path = HW_PingPong;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				950CEFAC224BBEB0005E7750 /* ViewController.m in Sources */,
+				95D60B1C2252923F00DBE404 /* HWPingPongGame.m in Sources */,
 				950CEFB7224BBEB3005E7750 /* main.m in Sources */,
 				950CF00E224FD092005E7750 /* HWSettingsView.m in Sources */,
 				950CEFA9224BBEB0005E7750 /* AppDelegate.m in Sources */,
