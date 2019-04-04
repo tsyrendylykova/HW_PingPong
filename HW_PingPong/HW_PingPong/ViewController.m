@@ -47,7 +47,7 @@
     self.horizontalBorderView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height / 2, self.view.frame.size.width, 5)];
     self.horizontalBorderView.backgroundColor = [UIColor whiteColor];
     
-    self.verticalBorderView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, 0, 5, self.view.frame.size.height)];
+    self.verticalBorderView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 5/2, 0, 5, self.view.frame.size.height)];
     self.verticalBorderView.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.horizontalBorderView];
@@ -89,10 +89,11 @@
     
     UIButton *startNewGame = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, 200, 200, 40)];
     [startNewGame setTitle:@"Start new game" forState:UIControlStateNormal];
-    [startNewGame setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [startNewGame setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     startNewGame.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
     startNewGame.layer.cornerRadius = 10;
     startNewGame.layer.masksToBounds = YES;
+    startNewGame.backgroundColor = [UIColor colorWithRed:122/255.f green:180/255.f blue:223/255.f alpha:0.8];
     [startNewGame addTarget:self action:@selector(startNewGame) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsView addSubview:startNewGame];
     
@@ -102,7 +103,7 @@
     labelName.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightSemibold];;
     [self.settingsView addSubview:labelName];
     
-    UIButton *lightDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 50, labelName.frame.origin.y + labelName.frame.size.height + 10, 100, 40)];
+    UIButton *lightDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, labelName.frame.origin.y + labelName.frame.size.height + 10, 200, 40)];
     [lightDifficulty setTitle:@"Light" forState:UIControlStateNormal];
     lightDifficulty.layer.cornerRadius = 10;
     lightDifficulty.layer.masksToBounds = YES;
@@ -110,7 +111,7 @@
     [lightDifficulty addTarget:self action:@selector(selectLightDifficulty) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsView addSubview:lightDifficulty];
     
-    UIButton *mediumDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 50, lightDifficulty.frame.origin.y + lightDifficulty.frame.size.height + 5, 100, 40)];
+    UIButton *mediumDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, lightDifficulty.frame.origin.y + lightDifficulty.frame.size.height + 5, 200, 40)];
     [mediumDifficulty setTitle:@"Medium" forState:UIControlStateNormal];
     mediumDifficulty.layer.cornerRadius = 10;
     mediumDifficulty.layer.masksToBounds = YES;
@@ -118,7 +119,7 @@
     [mediumDifficulty addTarget:self action:@selector(selectMediumDifficulty) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsView addSubview:mediumDifficulty];
     
-    UIButton *hardDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 50, mediumDifficulty.frame.origin.y + mediumDifficulty.frame.size.height + 5, 100, 40)];
+    UIButton *hardDifficulty = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, mediumDifficulty.frame.origin.y + mediumDifficulty.frame.size.height + 5, 200, 40)];
     [hardDifficulty setTitle:@"Hard" forState:UIControlStateNormal];
     hardDifficulty.layer.cornerRadius = 10;
     hardDifficulty.layer.masksToBounds = YES;
@@ -183,9 +184,18 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+-(void)showGameWinner:(NSString *)text {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:text preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self startNewGame];
+    }];
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 -(void)startTimer {
     self.timerPlatform = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(movementBall) userInfo:nil repeats:YES];
-    self.timerBall = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(platformFollowsBall) userInfo:nil repeats:YES];
+    self.timerBall = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveComputerPlatformAI) userInfo:nil repeats:YES];
 }
 
 -(void)pauseGame {
@@ -234,26 +244,30 @@
 }
 
 -(void)movementBall {
-    if (self.isBallTouchMyPlatform) {
-        NSLog(@"isBallTouchMyPlatform");
+    if (self.isBallTouchMyPlatformAtLeftAngle) {
+        self.game.dy *= -1;
+        self.game.dx *= -1;
+    }
+    if (self.isBallTouchMyPlatformAtRightAngle) {
+        self.game.dy *= -1;
+        self.game.dx *= -1;
+    }
+    else if (self.isBallTouchMyPlatform) {
         self.game.dy *= -1;
     }
     else if (self.isBallTouchComputerPlatform) {
-        NSLog(@"isBallTouchComputerPlatform");
         self.game.dy *= -1;
     }
     else if (self.isBallTouchRightOrLeftSide) {
-        NSLog(@"isBallTouchRightOrLeftSide");
         self.game.dx *= -1;
     }
     else if (self.isBallTouchTopOrBottomSide) {
-        NSLog(@"isBallTouchTopOrBottomSide");
         self.game.dy *= -1;
     }
     self.ball.center = CGPointMake(self.ball.center.x + self.game.dx, self.ball.center.y + self.game.dy);
 }
 
--(void)platformFollowsBall {
+-(void)moveComputerPlatformAI {
     CGFloat pointX = self.ball.center.x;
     self.computerPlatform.center = CGPointMake(pointX, self.computerPlatform.center.y);
 }
@@ -276,20 +290,18 @@
 
 -(Boolean)isBallTouchTopOrBottomSide {
     if (self.ball.center.y + self.ball.frame.size.height / 2 >= self.view.frame.size.height) {
-        NSLog(@"computer score %ld", self.game.computerScore);
         self.compScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.computerScore];
         if ([self.game isGameOver]) {
-            NSLog(@"New game compscore!");
-            [self newGame];
+            [self pauseGame];
+            [self showGameWinner:@"Failure!"];
         } else {
             [self reset];
         }
     } else if (self.ball.frame.origin.y < 89) {
-        NSLog(@"my score %ld", self.game.myScore);
         self.myScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.myScore];
         if ([self.game isGameOver]) {
-            NSLog(@"New game mescore!");
-            [self newGame];
+            [self pauseGame];
+            [self showGameWinner:@"You`re a winner!"];
         } else {
             [self reset];
         }
@@ -301,8 +313,28 @@
 
 -(Boolean)isBallTouchMyPlatform {
     if (self.ball.frame.origin.y + self.ball.frame.size.height >= self.myPlatform.frame.origin.y &&
-        self.ball.frame.origin.x >= self.myPlatform.frame.origin.x && self.ball.frame.origin.x <= self.myPlatform.frame.origin.x + self.myPlatform.frame.size.width) {
-        NSLog(@"touch my platform");
+        self.ball.frame.origin.x >= self.myPlatform.frame.origin.x &&
+        self.ball.frame.origin.x + self.ball.frame.size.width <= self.myPlatform.frame.origin.x + self.myPlatform.frame.size.width) {
+        return YES;
+    }
+    return NO;
+}
+
+-(Boolean)isBallTouchMyPlatformAtLeftAngle {
+    if (self.ball.frame.origin.y + self.ball.frame.size.height >= self.myPlatform.frame.origin.y &&
+        self.ball.frame.origin.y + self.ball.frame.size.height <= self.myPlatform.frame.origin.y  + 10 &&
+        self.ball.center.x + self.ball.frame.size.width / 3 >= self.myPlatform.frame.origin.x &&
+        self.ball.center.x < self.myPlatform.frame.origin.x) {
+        return YES;
+    }
+    return NO;
+}
+
+-(Boolean)isBallTouchMyPlatformAtRightAngle {
+    if (self.ball.frame.origin.y + self.ball.frame.size.height >= self.myPlatform.frame.origin.y &&
+        self.ball.frame.origin.y + self.ball.frame.size.height <= self.myPlatform.frame.origin.y + 10 &&
+        self.ball.center.x - self.ball.frame.size.width / 3 <= self.myPlatform.frame.origin.x + self.myPlatform.frame.size.width &&
+        self.ball.center.x > self.myPlatform.frame.origin.x + self.myPlatform.frame.size.width) {
         return YES;
     }
     return NO;
@@ -312,7 +344,6 @@
     if (self.ball.frame.origin.y <= 89 + self.computerPlatform.frame.size.height &&
         self.ball.frame.origin.x >= self.computerPlatform.frame.origin.x &&
         self.ball.frame.origin.x <= self.computerPlatform.frame.origin.x + self.computerPlatform.frame.size.width) {
-        NSLog(@"touch computer platform");
         return YES;
     }
     return NO;

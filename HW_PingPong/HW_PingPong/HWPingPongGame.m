@@ -11,7 +11,7 @@
 @implementation HWPingPongGame
 
 -(BOOL)isGameOver {
-    if (self.myScore > 11 || self.computerScore > 11) {
+    if (self.myScore > 10 || self.computerScore > 10) {
         return YES;
     } else {
         return NO;
