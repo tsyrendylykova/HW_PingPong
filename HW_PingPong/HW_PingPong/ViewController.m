@@ -77,6 +77,14 @@
     [self.view addSubview:self.myPlatform];
 }
 
+-(void)clearUIForNewGame {
+    [self.ball removeFromSuperview];
+    [self.computerPlatform removeFromSuperview];
+    [self.myPlatform removeFromSuperview];
+    [self.myScore removeFromSuperview];
+    [self.compScore removeFromSuperview];
+}
+
 -(void)prepareSettingsView {
     
     UIButton *startNewGame = [[UIButton alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, 200, 200, 40)];
@@ -122,7 +130,11 @@
 
 -(void)startNewGame {
     [self hideSettingsView];
+    [self clearUIForNewGame];
     [self newGame];
+    [self prepareUI];
+    [self prepareScores];
+    [self prepareSettingsView];
 }
 
 -(void)selectLightDifficulty {
@@ -141,19 +153,19 @@
 }
 
 -(void)prepareScores {
-    _compScore = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height / 2 - 50, 50, 50)];
-    _compScore.textColor = [UIColor whiteColor];
-    _compScore.text = [NSString stringWithFormat:@"%ld", (long)self.game.computerScore];
-    _compScore.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
+    self.compScore = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height / 2 - 50, 50, 50)];
+    self.compScore.textColor = [UIColor whiteColor];
+    self.compScore.text = [NSString stringWithFormat:@"%ld", (long)self.game.computerScore];
+    self.compScore.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
     
-    [self.view addSubview:_compScore];
+    [self.view addSubview:self.compScore];
     
-    _myScore = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height / 2 + 5, 50, 50)];
-    _myScore.textColor = [UIColor whiteColor];
-    _myScore.text = [NSString stringWithFormat:@"%ld", (long)self.game.myScore];
-    _myScore.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
+    self.myScore = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height / 2 + 5, 50, 50)];
+    self.myScore.textColor = [UIColor whiteColor];
+    self.myScore.text = [NSString stringWithFormat:@"%ld", (long)self.game.myScore];
+    self.myScore.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
     
-    [self.view addSubview:_myScore];
+    [self.view addSubview:self.myScore];
 }
 
 -(void)newGame {
