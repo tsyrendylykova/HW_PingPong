@@ -67,7 +67,6 @@
     self.myPlatform.backgroundColor = [UIColor blueColor];
     
     self.settingsView = [HWSettingsView settingsView];
-    [self.view addSubview:self.settingsView];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -75,6 +74,7 @@
     [self.view addSubview:self.ball];
     [self.view addSubview:self.computerPlatform];
     [self.view addSubview:self.myPlatform];
+    [self.view addSubview:self.settingsView];
 }
 
 -(void)clearUIForNewGame {
@@ -199,33 +199,15 @@
     self.timerBall = nil;
 }
 
--(void)hideAllViews {
-    [self.ball setHidden:YES];
-    [self.computerPlatform setHidden:YES];
-    [self.myPlatform setHidden:YES];
-    [self.compScore setHidden:YES];
-    [self.myScore setHidden:YES];
-}
-
--(void)unhideAllViews {
-    [self.ball setHidden: NO];
-    [self.computerPlatform setHidden:NO];
-    [self.myPlatform setHidden:NO];
-    [self.compScore setHidden:NO];
-    [self.myScore setHidden:NO];
-}
-
 -(void)showSettingsView {
     [self pauseGame];
     [self.settingsView showSettingsView];
-    [self hideAllViews];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Play" style:UIBarButtonItemStyleDone target:self action:@selector(hideSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
 -(void)hideSettingsView {
-    [self unhideAllViews];
     [self.settingsView hideSettingsView];
     [self startTimer];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
