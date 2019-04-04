@@ -85,6 +85,7 @@
     startNewGame.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
     startNewGame.layer.cornerRadius = 10;
     startNewGame.layer.masksToBounds = YES;
+    [startNewGame addTarget:self action:@selector(startNewGame) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsView addSubview:startNewGame];
     
     UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(self.settingsView.frame.size.width / 2 - 100, startNewGame.frame.origin.y + startNewGame.frame.size.height + 10, 200, 40)];
@@ -119,16 +120,24 @@
 
 }
 
+-(void)startNewGame {
+    [self hideSettingsView];
+    [self newGame];
+}
+
 -(void)selectLightDifficulty {
     [self.game selectLightDiffuculty];
+    [self hideSettingsView];
 }
 
 -(void)selectMediumDifficulty {
     [self.game selectMediumDiffuculty];
+    [self hideSettingsView];
 }
 
 -(void)selectHardDifficulty {
     [self.game selectHardDiffuculty];
+    [self hideSettingsView];
 }
 
 -(void)prepareScores {
@@ -152,7 +161,8 @@
     self.game = [HWPingPongGame new];
     self.game.computerScore = 0;
     self.game.myScore = 0;
-    [self.game selectLightDiffuculty];
+    self.game.dx = 0.1;
+    self.game.dy = 0.1;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:@"Start game" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self startTimer];
