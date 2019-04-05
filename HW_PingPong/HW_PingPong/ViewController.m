@@ -68,13 +68,19 @@
     
     self.settingsView = [HWSettingsView settingsView];
     
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
     [self.view addSubview:self.ball];
     [self.view addSubview:self.computerPlatform];
     [self.view addSubview:self.myPlatform];
-    [self.view addSubview:self.settingsView];
+//    [self.view addSubview:self.settingsView];
+//
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 1.5;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    [self.settingsView.layer addAnimation:transition forKey:kCATransition];
 }
 
 -(void)clearUIForNewGame {
@@ -140,6 +146,14 @@
 
 -(void)selectLightDifficulty {
     [self.game selectLightDiffuculty];
+//
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 1.5;
+//    //transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionFade;
+//    [self.view.layer addAnimation:transition forKey:kCATransition];
+//
+//    self.settingsView.hidden = YES;
     [self hideSettingsView];
 }
 
@@ -174,8 +188,8 @@
     self.game = [HWPingPongGame new];
     self.game.computerScore = 0;
     self.game.myScore = 0;
-    self.game.dx = 0.1;
-    self.game.dy = 0.1;
+    self.game.dx = 0.2;
+    self.game.dy = 0.2;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:@"Start game" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self startTimer];
@@ -211,14 +225,28 @@
 
 -(void)showSettingsView {
     [self pauseGame];
-    [self.settingsView showSettingsView];
+    [self.view addSubview:self.settingsView];
+    
+    CATransition *transtion=[CATransition animation];
+    [transtion setType:kCATransitionPush];
+    [transtion setSubtype:kCATransitionFromTop];
+    [transtion setDuration:0.5];
+    transtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [self.view.layer addAnimation:transtion forKey:kCATransition];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Play" style:UIBarButtonItemStyleDone target:self action:@selector(hideSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
 -(void)hideSettingsView {
-    [self.settingsView hideSettingsView];
+    
+    [self.settingsView removeFromSuperview];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.type = kCATransitionFade;
+    [self.view.layer addAnimation:transition forKey:kCATransition];
+    
     [self startTimer];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -308,8 +336,6 @@
     }
     return NO;
 }
-
-
 
 -(Boolean)isBallTouchMyPlatform {
     if (self.ball.frame.origin.y + self.ball.frame.size.height >= self.myPlatform.frame.origin.y &&

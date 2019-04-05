@@ -19,8 +19,8 @@
 }
 
 -(void)selectLightDiffuculty {
-    if (self.dx > 0) self.dx = 0.1; else self.dx = -0.1;
-    if (self.dy > 0) self.dy = 0.1; else self.dy = -0.1;
+    if (self.dx > 0) self.dx = 0.2; else self.dx = -0.2;
+    if (self.dy > 0) self.dy = 0.2; else self.dy = -0.2;
 }
 
 -(void)selectMediumDiffuculty {

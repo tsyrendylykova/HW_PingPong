@@ -14,9 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(HWSettingsView *)settingsView;
 
--(void)showSettingsView;
--(void)hideSettingsView;
-
 @end
 
 NS_ASSUME_NONNULL_END
