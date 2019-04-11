@@ -1,8 +1,8 @@
 //
 //  main.m
-//  HW_PingPong
+//  MVPPingPong
 //
-//  Created by Цырендылыкова Эржена on 27/03/2019.
+//  Created by Цырендылыкова Эржена on 08/04/2019.
 //  Copyright © 2019 Erzhena Tsyrendylykova. All rights reserved.
 //
 

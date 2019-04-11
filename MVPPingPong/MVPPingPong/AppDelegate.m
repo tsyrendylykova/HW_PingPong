@@ -1,13 +1,15 @@
 //
 //  AppDelegate.m
-//  HW_PingPong
+//  MVPPingPong
 //
-//  Created by Цырендылыкова Эржена on 27/03/2019.
+//  Created by Цырендылыкова Эржена on 08/04/2019.
 //  Copyright © 2019 Erzhena Tsyrendylykova. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "GamePingPong.h"
+#import "PingPongView.h"
+#import "PresenterPingPong.h"
 
 @interface AppDelegate ()
 
@@ -17,14 +19,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    GamePingPong *game = [[GamePingPong alloc] init];
+    PingPongView *view = [[PingPongView alloc] init];
+    PresenterPingPong *presenter = [[PresenterPingPong alloc] initWithView:view withModel:game];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:view];
+    view.presenter = presenter;
     
-    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    ViewController *viewController = [[ViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.window.rootViewController = navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [self.window makeKeyWindow];
     
+
     return YES;
 }
 

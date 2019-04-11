@@ -1,17 +1,24 @@
 //
-//  HWPingPongGame.m
-//  HW_PingPong
+//  GamePingPong.m
+//  MVPPingPong
 //
-//  Created by Цырендылыкова Эржена on 01/04/2019.
+//  Created by Цырендылыкова Эржена on 08/04/2019.
 //  Copyright © 2019 Erzhena Tsyrendylykova. All rights reserved.
 //
 
-#import "HWPingPongGame.h"
+#import "GamePingPong.h"
 
-@implementation HWPingPongGame
+@implementation GamePingPong
+
+-(id)init {
+    self = [super init];
+    if (self) {
+    }
+    return self;
+}
 
 -(BOOL)isGameOver {
-    if (self.myScore > 10 || self.computerScore > 10) {
+    if (self.myScore > 11 || self.computerScore > 11) {
         return YES;
     } else {
         return NO;
@@ -32,6 +39,5 @@
     if (self.dx > 0) self.dx = 0.5; else self.dx = -0.5;
     if (self.dy > 0) self.dy = 0.5; else self.dy = -0.5;
 }
-
 
 @end
