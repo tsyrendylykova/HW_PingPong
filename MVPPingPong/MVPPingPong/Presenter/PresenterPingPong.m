@@ -94,22 +94,20 @@
 }
 
 -(Boolean)isBallTouchTopOrBottomSide {
-    if (self.view.ball.center.y + self.view.ball.frame.size.height / 2 >= self.view.view.frame.size.height) {
+    if (self.view.ball.center.y + self.view.ball.frame.size.height / 2 > self.view.view.frame.size.height) {
         self.view.compScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.computerScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
             [self showGameWinner:@"Failure!"];
-        } else {
-            [self reset];
         }
+        [self reset];
     } else if (self.view.ball.frame.origin.y < 89) {
         self.view.myScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.myScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
             [self showGameWinner:@"You`re a winner!"];
-        } else {
-            [self reset];
         }
+        [self reset];;
     }
     return NO;
 }
@@ -125,6 +123,7 @@
 
 -(void)reset {
     self.view.ball.frame = CGRectMake(self.view.view.frame.size.width / 2, 125 + self.view.computerPlatform.frame.size.height, 30, 30);
+    self.view.computerPlatform.center = CGPointMake(self.view.ball.center.x, self.view.computerPlatform.center.y);
     if ((arc4random() % 2) == 0) {
         self.game.dx *= -1;
     } else {
