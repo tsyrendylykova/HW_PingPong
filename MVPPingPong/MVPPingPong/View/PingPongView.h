@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)prepareTableUI;
 -(void)prepareSettingsView;
+-(void)showGameWinner:(NSString *)text;
 
 @end
 

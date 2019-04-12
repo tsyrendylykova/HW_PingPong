@@ -54,6 +54,12 @@
     self.myScore.textColor = [UIColor whiteColor];
     self.myScore.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
     
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:@"Start game" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.presenter startTimer];
+    }];
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
     
     [self.view addSubview:self.horizontalBorderView];
     [self.view addSubview:self.verticalBorderView];
@@ -108,6 +114,15 @@
     [hardDifficulty addTarget:self action:@selector(selectHardDifficulty) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsView addSubview:hardDifficulty];
     
+}
+
+-(void)showGameWinner:(NSString *)text {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:text preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.presenter startNewGameButton];
+    }];
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)showSettingsView {

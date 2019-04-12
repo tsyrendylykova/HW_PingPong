@@ -17,20 +17,22 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+- (void)assemblyApplicationLaunching {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    GamePingPong *game = [[GamePingPong alloc] init];
+    GamePingPong *game = [[GamePingPong alloc] initGame];
     PingPongView *view = [[PingPongView alloc] init];
-    PresenterPingPong *presenter = [[PresenterPingPong alloc] initWithView:view withModel:game];
+    PresenterPingPong *presenter = [[PresenterPingPong alloc] initWithView:view model:game];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:view];
     view.presenter = presenter;
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyWindow];
-    
+}
 
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self assemblyApplicationLaunching];
     return YES;
 }
 

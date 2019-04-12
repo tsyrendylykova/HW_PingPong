@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTimer *timerPlatform;
 @property (nonatomic, strong) NSTimer *timerBall;
 
--(id)initWithView: (PingPongView *)view withModel:(GamePingPong *)model;
+-(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model;
 -(void)showUI;
 -(void)startNewGame;
 -(void)setPointMyPlatform: (CGPoint)point;
@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)selectMediumDifficulty;
 -(void)selectHardDifficulty;
 -(void)startNewGameButton;
+-(void)startTimer;
 
 
 @end

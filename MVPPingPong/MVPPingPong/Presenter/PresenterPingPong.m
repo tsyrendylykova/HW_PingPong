@@ -10,12 +10,13 @@
 
 @implementation PresenterPingPong
 
--(id)initWithView: (PingPongView *)view withModel:(GamePingPong *)model {
+-(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model {
     self = [super init];
     if (self) {
-        self.game = model;
-        self.view = view;
+        _game = model;
+        _view = view;
     }
+    
     return self;
 }
 
@@ -32,13 +33,6 @@
     self.game.myScore = 0;
     self.view.compScore.text = @"0";
     self.view.myScore.text = @"0";
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:@"Start game" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self startTimer];
-    }];
-    [alertController addAction:action];
-    [self.view presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)startTimer {
@@ -98,27 +92,18 @@
         self.view.compScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.computerScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
-            [self showGameWinner:@"Failure!"];
+            [self.view showGameWinner:@"Failure!"];
         }
         [self reset];
     } else if (self.view.ball.frame.origin.y < 89) {
         self.view.myScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.myScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
-            [self showGameWinner:@"You`re a winner!"];
+            [self.view showGameWinner:@"You`re a winner!"];
         }
         [self reset];;
     }
     return NO;
-}
-
--(void)showGameWinner:(NSString *)text {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:text preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self startNewGame];
-    }];
-    [alertController addAction:action];
-    [self.view presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)reset {
