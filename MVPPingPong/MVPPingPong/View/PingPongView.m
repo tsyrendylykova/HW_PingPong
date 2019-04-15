@@ -39,15 +39,15 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
-    self.ball = [[UIView alloc] initWithFrame:CGRectMake(200, 150, 30, 30)];
+    self.ball = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, 150, 30, 30)];
     self.ball.backgroundColor = [UIColor whiteColor];
     self.ball.layer.cornerRadius = self.ball.frame.size.height / 2;
     self.ball.layer.masksToBounds = YES;
     
-    self.computerPlatform = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 3, 89, self.view.frame.size.width / 3, 10)];
+    self.computerPlatform = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - self.view.frame.size.width / 3.2) / 2, 89, self.view.frame.size.width / 3.2, 10)];
     self.computerPlatform.backgroundColor = [UIColor blueColor];
     
-    self.myPlatform = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 3, self.view.frame.size.height - 10, self.view.frame.size.width / 3, 10)];
+    self.myPlatform = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - self.view.frame.size.width / 3.2) / 2, self.view.frame.size.height - 10, self.view.frame.size.width / 3.2, 10)];
     self.myPlatform.backgroundColor = [UIColor blueColor];
     
     self.compScore = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height / 2 - 50, 50, 50)];
@@ -121,7 +121,7 @@
 }
 
 -(void)resetUI {
-    self.ball.frame = CGRectMake(200, 150, 30, 30);
+    self.ball.frame = CGRectMake(self.view.frame.size.width / 2, 150, 30, 30);
     self.computerPlatform.center = CGPointMake(self.view.center.x, self.computerPlatform.center.y);
 }
 
@@ -256,6 +256,5 @@
     [self.myScore removeFromSuperview];
     [self.compScore removeFromSuperview];
 }
-
 
 @end

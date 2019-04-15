@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "GamePingPong.h"
 #import "PingPongView.h"
+#import "PingPongProtocols.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PingPongView;
 
-@interface PresenterPingPong : NSObject
+@interface PresenterPingPong : NSObject <PingPongPresenterProtocol>
 
 @property (nonatomic, strong) GamePingPong *game;
 @property (nonatomic, strong) PingPongView *view;
@@ -22,8 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimer *timerBall;
 
 -(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model;
-
-//для протокола
 -(void)showUI;
 -(void)startNewGame;
 -(void)startTimer;

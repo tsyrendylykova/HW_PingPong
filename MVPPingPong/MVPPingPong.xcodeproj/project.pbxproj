@@ -38,6 +38,7 @@
 		95693044225B430A00C8FDB8 /* PingPongView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongView.m; sourceTree = "<group>"; };
 		956930E6226472C400C8FDB8 /* PingPongAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongAssembly.h; sourceTree = "<group>"; };
 		956930E7226472C400C8FDB8 /* PingPongAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongAssembly.m; sourceTree = "<group>"; };
+		956930EA2264898C00C8FDB8 /* PingPongProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongProtocols.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 				95693038225B36E900C8FDB8 /* View */,
 				9569303C225B370C00C8FDB8 /* Presenter */,
 				956930E9226472D000C8FDB8 /* Assembly */,
+				956930EB2264899200C8FDB8 /* Protocols */,
 			);
 			path = MVPPingPong;
 			sourceTree = "<group>";
@@ -121,6 +123,14 @@
 				956930E7226472C400C8FDB8 /* PingPongAssembly.m */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		956930EB2264899200C8FDB8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				956930EA2264898C00C8FDB8 /* PingPongProtocols.h */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

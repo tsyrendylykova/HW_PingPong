@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PresenterPingPong.h"
+#import "PingPongProtocols.h"
 
 @class PresenterPingPong;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PingPongView : UIViewController
+@interface PingPongView : UIViewController <PingPongViewProtocol>
 
 @property (nonatomic, strong) PresenterPingPong *presenter;
 @property (nonatomic, strong) UIView *horizontalBorderView;
@@ -25,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *myScore;
 @property (nonatomic, strong) UIView *settingsView;
 
-// для протокола
-// + то что вызывается во viewDidLoad надо не забыть
 -(void)prepareTableUI;
 -(void)prepareSettingsView;
 -(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
