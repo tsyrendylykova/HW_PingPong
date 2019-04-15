@@ -120,6 +120,11 @@
     
 }
 
+-(void)resetUI {
+    self.ball.frame = CGRectMake(200, 150, 30, 30);
+    self.computerPlatform.center = CGPointMake(self.view.center.x, self.computerPlatform.center.y);
+}
+
 -(void)showGameWinner:(NSString *)text {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ping Pong" message:text preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -220,6 +225,28 @@
         return YES;
     }
     return NO;
+}
+
+-(Boolean)isBallTouchBottomSide {
+    if (self.ball.center.y + self.ball.frame.size.height / 2 > self.view.frame.size.height) {
+        return YES;
+    }
+    return NO;
+}
+
+-(Boolean)isBallTouchTopSide {
+    if (self.ball.frame.origin.y < 89) {
+        return YES;
+    }
+    return NO;
+}
+
+-(void)incrementCompScore: (NSInteger)newScore {
+    self.compScore.text = [NSString stringWithFormat:@"%ld", newScore];
+}
+
+-(void)incrementMyScore: (NSInteger)newScore {
+    self.myScore.text = [NSString stringWithFormat:@"%ld", newScore];
 }
 
 -(void)clearUIForNewGame {

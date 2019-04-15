@@ -25,21 +25,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *myScore;
 @property (nonatomic, strong) UIView *settingsView;
 
--(void)prepareTableUI;
--(void)prepareSettingsView;
--(void)showGameWinner:(NSString *)text;
-
 // для протокола
 // + то что вызывается во viewDidLoad надо не забыть
+-(void)prepareTableUI;
+-(void)prepareSettingsView;
 -(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
 -(void)setComputerPlatformCenter;
 -(void)setBallCenterWithDx: (CGFloat)dx dy:(CGFloat)dy;
 -(Boolean)isBallTouchRightOrLeftSide;
 -(Boolean)isBallTouchMyPlatform;
 -(Boolean)isBallTouchComputerPlatform;
+-(Boolean)isBallTouchBottomSide;
+-(Boolean)isBallTouchTopSide;
 -(void)clearUIForNewGame;
 -(void)showSettingsView;
 -(void)hideSettingsView;
+-(void)incrementCompScore: (NSInteger)newScore;
+-(void)incrementMyScore: (NSInteger)newScore;
+-(void)resetUI;
+-(void)showGameWinner:(NSString *)text;
 
 @end
 

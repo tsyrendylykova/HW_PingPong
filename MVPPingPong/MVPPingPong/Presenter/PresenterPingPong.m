@@ -67,11 +67,13 @@
     else if (self.view.isBallTouchRightOrLeftSide) {
         self.game.dx *= -1;
     }
-    else if (self.isBallTouchBottomSide) {
+    else if (self.view.isBallTouchBottomSide) {
         self.game.dy *= -1;
+        [self ballTouchBottomSide];
     }
-    else if (self.isBallTouchTopSide) {
+    else if (self.view.isBallTouchTopSide) {
         self.game.dy *= -1;
+        [self ballTouchTopSide];
     }
     
     [self.view setBallCenterWithDx: (CGFloat)self.game.dx dy:(CGFloat)self.game.dy];
@@ -81,40 +83,32 @@
     [self.view setComputerPlatformCenter];
 }
 
--(Boolean)isBallTouchBottomSide {
-    if (self.view.ball.center.y + self.view.ball.frame.size.height / 2 > self.view.view.frame.size.height) {
-        self.view.compScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.computerScore];
-        if ([self.game isGameOver]) {
-            [self pauseGame];
-            [self.view showGameWinner:@"Failure!"];
-            NSString *scoreString = [NSString stringWithFormat:@"%ld", self.game.computerScore];
-            [[NSUserDefaults standardUserDefaults] setObject:scoreString forKey:@"scoreKey"];
-        }
-        [self reset];
+-(void)ballTouchBottomSide {
+    [self.view incrementCompScore: ++self.game.computerScore];
+    if ([self.game isGameOver]) {
+        [self pauseGame];
+        [self.view showGameWinner:@"Failure!"];
     }
-    return NO;
+    [self reset];
 }
 
--(Boolean)isBallTouchTopSide {
-    if (self.view.ball.frame.origin.y < 89) {
-        self.view.myScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.myScore];
-        if ([self.game isGameOver]) {
-            [self pauseGame];
-            [self.view showGameWinner:@"You`re a winner!"];
-        }
-        [self reset];
+-(void)ballTouchTopSide {
+    [self.view incrementMyScore: ++self.game.myScore];
+    if ([self.game isGameOver]) {
+        [self pauseGame];
+        [self.view showGameWinner:@"You`re a winner!"];
     }
-    return NO;
+    [self reset];
 }
 
 -(void)reset {
-    self.view.ball.frame = CGRectMake(200, 150, 30, 30);
-    self.view.computerPlatform.center = CGPointMake(self.view.ball.center.x, self.view.computerPlatform.center.y);
+    [self.view resetUI];
     if ((arc4random() % 2) == 0) {
         self.game.dx *= -1;
     } else {
         self.game.dx *= 1;
     }
+    self.game.dy *= -1;
 }
 
 -(void)selectDifficulty: (CGFloat)difficulty {

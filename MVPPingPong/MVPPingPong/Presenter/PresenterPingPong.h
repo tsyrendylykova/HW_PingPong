@@ -18,19 +18,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) GamePingPong *game;
 @property (nonatomic, strong) PingPongView *view;
-@property (nonatomic, strong) NSTimer *timerPlatform;
-@property (nonatomic, strong) NSTimer *timerBall;
+@property (nonatomic, assign) NSTimer *timerPlatform;
+@property (nonatomic, assign) NSTimer *timerBall;
 
 -(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model;
+
+//для протокола
 -(void)showUI;
 -(void)startNewGame;
 -(void)startTimer;
-
-
-//для протокола
 -(void)pauseGame;
 -(void)selectDifficulty: (CGFloat)difficulty;
-
 
 @end
 
