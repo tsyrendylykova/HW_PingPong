@@ -24,14 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model;
 -(void)showUI;
 -(void)startNewGame;
--(void)setPointMyPlatform: (CGPoint)point;
--(void)showSettingsView;
--(void)hideSettingsView;
--(void)selectLightDifficulty;
--(void)selectMediumDifficulty;
--(void)selectHardDifficulty;
--(void)startNewGameButton;
 -(void)startTimer;
+
+
+//для протокола
+-(void)pauseGame;
+-(void)selectDifficulty: (CGFloat)difficulty;
 
 
 @end

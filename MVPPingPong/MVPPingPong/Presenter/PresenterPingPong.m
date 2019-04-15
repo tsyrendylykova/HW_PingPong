@@ -31,8 +31,14 @@
     self.game.dy = 0.2;
     self.game.computerScore = 0;
     self.game.myScore = 0;
-    self.view.compScore.text = @"0";
-    self.view.myScore.text = @"0";
+    
+    if (self.view.settingsView.isHidden) {
+        [self.view hideSettingsView];
+    }
+    [self.view clearUIForNewGame];
+    [self.view prepareTableUI];
+    [self.view prepareSettingsView];
+    [self.view setScoresWithCompScore:self.game.computerScore myScore:self.game.myScore];
 }
 
 -(void)startTimer {
@@ -52,62 +58,57 @@
 }
 
 -(void)movementBall {
-    if (self.isBallTouchMyPlatformAtLeftAngle) {
+    if (self.view.isBallTouchMyPlatform) {
         self.game.dy *= -1;
+    }
+    else if (self.view.isBallTouchComputerPlatform) {
+        self.game.dy *= -1;
+    }
+    else if (self.view.isBallTouchRightOrLeftSide) {
         self.game.dx *= -1;
     }
-    if (self.isBallTouchMyPlatformAtRightAngle) {
-        self.game.dy *= -1;
-        self.game.dx *= -1;
-    }
-    else if (self.isBallTouchMyPlatform) {
+    else if (self.isBallTouchBottomSide) {
         self.game.dy *= -1;
     }
-    else if (self.isBallTouchComputerPlatform) {
+    else if (self.isBallTouchTopSide) {
         self.game.dy *= -1;
     }
-    else if (self.isBallTouchRightOrLeftSide) {
-        self.game.dx *= -1;
-    }
-    else if (self.isBallTouchTopOrBottomSide) {
-        self.game.dy *= -1;
-    }
-    self.view.ball.center = CGPointMake(self.view.ball.center.x + self.game.dx, self.view.ball.center.y + self.game.dy);
+    
+    [self.view setBallCenterWithDx: (CGFloat)self.game.dx dy:(CGFloat)self.game.dy];
 }
 
 -(void)moveComputerPlatformAI {
-    CGFloat pointX = self.view.ball.center.x;
-    self.view.computerPlatform.center = CGPointMake(pointX, self.view.computerPlatform.center.y);
+    [self.view setComputerPlatformCenter];
 }
 
--(Boolean)isBallTouchRightOrLeftSide {
-    if (self.view.ball.center.x + self.view.ball.frame.size.width / 2 > self.view.view.frame.size.width || self.view.ball.frame.origin.x < 0) {
-        return YES;
-    }
-    return NO;
-}
-
--(Boolean)isBallTouchTopOrBottomSide {
+-(Boolean)isBallTouchBottomSide {
     if (self.view.ball.center.y + self.view.ball.frame.size.height / 2 > self.view.view.frame.size.height) {
         self.view.compScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.computerScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
             [self.view showGameWinner:@"Failure!"];
+            NSString *scoreString = [NSString stringWithFormat:@"%ld", self.game.computerScore];
+            [[NSUserDefaults standardUserDefaults] setObject:scoreString forKey:@"scoreKey"];
         }
         [self reset];
-    } else if (self.view.ball.frame.origin.y < 89) {
+    }
+    return NO;
+}
+
+-(Boolean)isBallTouchTopSide {
+    if (self.view.ball.frame.origin.y < 89) {
         self.view.myScore.text = [NSString stringWithFormat:@"%ld", (long)++self.game.myScore];
         if ([self.game isGameOver]) {
             [self pauseGame];
             [self.view showGameWinner:@"You`re a winner!"];
         }
-        [self reset];;
+        [self reset];
     }
     return NO;
 }
 
 -(void)reset {
-    self.view.ball.frame = CGRectMake(self.view.view.frame.size.width / 2, 125 + self.view.computerPlatform.frame.size.height, 30, 30);
+    self.view.ball.frame = CGRectMake(200, 150, 30, 30);
     self.view.computerPlatform.center = CGPointMake(self.view.ball.center.x, self.view.computerPlatform.center.y);
     if ((arc4random() % 2) == 0) {
         self.game.dx *= -1;
@@ -116,109 +117,9 @@
     }
 }
 
--(void)startNewGameButton {
-    [self hideSettingsView];
-    [self clearUIForNewGame];
-    [self.view prepareTableUI];
-    [self.view prepareSettingsView];
-    [self startNewGame];
+-(void)selectDifficulty: (CGFloat)difficulty {
+    [self.game selectDifficulty: difficulty];
+    [self.view hideSettingsView];
 }
-
--(void)clearUIForNewGame {
-    [self.view.ball removeFromSuperview];
-    [self.view.computerPlatform removeFromSuperview];
-    [self.view.myPlatform removeFromSuperview];
-    [self.view.myScore removeFromSuperview];
-    [self.view.compScore removeFromSuperview];
-}
-
--(void)showSettingsView {
-    [self pauseGame];
-    [self.view.view addSubview:self.view.settingsView];
-    
-    CATransition *transtion=[CATransition animation];
-    [transtion setType:kCATransitionPush];
-    [transtion setSubtype:kCATransitionFromTop];
-    [transtion setDuration:0.5];
-    transtion.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [self.view.view.layer addAnimation:transtion forKey:kCATransition];
-    
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Play" style:UIBarButtonItemStyleDone target:self action:@selector(hideSettingsView)];
-    self.view.navigationItem.rightBarButtonItem = rightBarButton;
-}
-
--(void)hideSettingsView {
-    
-    [self.view.settingsView removeFromSuperview];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    transition.type = kCATransitionFade;
-    [self.view.view.layer addAnimation:transition forKey:kCATransition];
-    
-    [self startTimer];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView)];
-    self.view.navigationItem.rightBarButtonItem = rightBarButton;
-}
-
--(void)selectLightDifficulty {
-    [self.game selectLightDiffuculty];
-    [self hideSettingsView];
-}
-
--(void)selectMediumDifficulty {
-    [self.game selectMediumDiffuculty];
-    [self hideSettingsView];
-}
-
--(void)selectHardDifficulty {
-    [self.game selectHardDiffuculty];
-    [self hideSettingsView];
-}
-
--(Boolean)isBallTouchMyPlatform {
-    if (self.view.ball.frame.origin.y + self.view.ball.frame.size.height >= self.view.myPlatform.frame.origin.y &&
-        self.view.ball.frame.origin.x >= self.view.myPlatform.frame.origin.x &&
-        self.view.ball.frame.origin.x + self.view.ball.frame.size.width <= self.view.myPlatform.frame.origin.x + self.view.myPlatform.frame.size.width) {
-        return YES;
-    }
-    return NO;
-}
-
--(Boolean)isBallTouchMyPlatformAtLeftAngle {
-    if (self.view.ball.frame.origin.y + self.view.ball.frame.size.height >= self.view.myPlatform.frame.origin.y &&
-        self.view.ball.frame.origin.y + self.view.ball.frame.size.height <= self.view.myPlatform.frame.origin.y  + 10 &&
-        self.view.ball.center.x + self.view.ball.frame.size.width / 3 >= self.view.myPlatform.frame.origin.x &&
-        self.view.ball.center.x < self.view.myPlatform.frame.origin.x) {
-        return YES;
-    }
-    return NO;
-}
-
--(Boolean)isBallTouchMyPlatformAtRightAngle {
-    if (self.view.ball.frame.origin.y + self.view.ball.frame.size.height >= self.view.myPlatform.frame.origin.y &&
-        self.view.ball.frame.origin.y + self.view.ball.frame.size.height <= self.view.myPlatform.frame.origin.y + 10 &&
-        self.view.ball.center.x - self.view.ball.frame.size.width / 3 <= self.view.myPlatform.frame.origin.x + self.view.myPlatform.frame.size.width &&
-        self.view.ball.center.x > self.view.myPlatform.frame.origin.x + self.view.myPlatform.frame.size.width) {
-        return YES;
-    }
-    return NO;
-}
-
--(Boolean)isBallTouchComputerPlatform {
-    if (self.view.ball.frame.origin.y <= 89 + self.view.computerPlatform.frame.size.height &&
-        self.view.ball.frame.origin.x >= self.view.computerPlatform.frame.origin.x &&
-        self.view.ball.frame.origin.x <= self.view.computerPlatform.frame.origin.x + self.view.computerPlatform.frame.size.width) {
-        return YES;
-    }
-    return NO;
-}
-
--(void)setPointMyPlatform: (CGPoint)point {
-    if (point.y > self.view.view.frame.size.height / 2) {
-        self.view.myPlatform.center = CGPointMake(point.x, self.view.view.frame.size.height - self.view.myPlatform.frame.size.height / 2);
-    }
-}
-
 
 @end

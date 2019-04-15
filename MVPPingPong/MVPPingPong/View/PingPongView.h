@@ -29,6 +29,18 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)prepareSettingsView;
 -(void)showGameWinner:(NSString *)text;
 
+// для протокола
+// + то что вызывается во viewDidLoad надо не забыть
+-(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
+-(void)setComputerPlatformCenter;
+-(void)setBallCenterWithDx: (CGFloat)dx dy:(CGFloat)dy;
+-(Boolean)isBallTouchRightOrLeftSide;
+-(Boolean)isBallTouchMyPlatform;
+-(Boolean)isBallTouchComputerPlatform;
+-(void)clearUIForNewGame;
+-(void)showSettingsView;
+-(void)hideSettingsView;
+
 @end
 
 NS_ASSUME_NONNULL_END

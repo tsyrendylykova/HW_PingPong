@@ -16,26 +16,16 @@
 }
 
 -(BOOL)isGameOver {
-    if (self.myScore > 11 || self.computerScore > 11) {
+    if (self.myScore > 5 || self.computerScore > 5) {
         return YES;
     } else {
         return NO;
     }
 }
 
--(void)selectLightDiffuculty {
-    if (self.dx > 0) self.dx = 0.2; else self.dx = -0.2;
-    if (self.dy > 0) self.dy = 0.2; else self.dy = -0.2;
-}
-
--(void)selectMediumDiffuculty {
-    if (self.dx > 0) self.dx = 0.3; else self.dx = -0.3;
-    if (self.dy > 0) self.dy = 0.3; else self.dy = -0.3;
-}
-
--(void)selectHardDiffuculty {
-    if (self.dx > 0) self.dx = 0.5; else self.dx = -0.5;
-    if (self.dy > 0) self.dy = 0.5; else self.dy = -0.5;
+-(void)selectDifficulty: (CGFloat)difficulty {
+    if (self.dx > 0) self.dx = difficulty; else self.dx = difficulty * (-1);
+    if (self.dy > 0) self.dy = difficulty; else self.dy = difficulty * (-1);
 }
 
 @end

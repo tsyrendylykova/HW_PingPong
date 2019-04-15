@@ -16,6 +16,7 @@
 		95693033225B36B000C8FDB8 /* GamePingPong.m in Sources */ = {isa = PBXBuildFile; fileRef = 95693032225B36B000C8FDB8 /* GamePingPong.m */; };
 		9569303B225B370700C8FDB8 /* PresenterPingPong.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569303A225B370700C8FDB8 /* PresenterPingPong.m */; };
 		95693045225B430A00C8FDB8 /* PingPongView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95693044225B430A00C8FDB8 /* PingPongView.m */; };
+		956930E8226472C400C8FDB8 /* PingPongAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 956930E7226472C400C8FDB8 /* PingPongAssembly.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		9569303A225B370700C8FDB8 /* PresenterPingPong.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresenterPingPong.m; sourceTree = "<group>"; };
 		95693043225B430A00C8FDB8 /* PingPongView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongView.h; sourceTree = "<group>"; };
 		95693044225B430A00C8FDB8 /* PingPongView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongView.m; sourceTree = "<group>"; };
+		956930E6226472C400C8FDB8 /* PingPongAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongAssembly.h; sourceTree = "<group>"; };
+		956930E7226472C400C8FDB8 /* PingPongAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongAssembly.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 				95693034225B36BE00C8FDB8 /* Model */,
 				95693038225B36E900C8FDB8 /* View */,
 				9569303C225B370C00C8FDB8 /* Presenter */,
+				956930E9226472D000C8FDB8 /* Assembly */,
 			);
 			path = MVPPingPong;
 			sourceTree = "<group>";
@@ -108,6 +112,15 @@
 				9569303A225B370700C8FDB8 /* PresenterPingPong.m */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		956930E9226472D000C8FDB8 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				956930E6226472C400C8FDB8 /* PingPongAssembly.h */,
+				956930E7226472C400C8FDB8 /* PingPongAssembly.m */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +199,7 @@
 				9569302B225B364B00C8FDB8 /* main.m in Sources */,
 				9569303B225B370700C8FDB8 /* PresenterPingPong.m in Sources */,
 				9569301D225B364900C8FDB8 /* AppDelegate.m in Sources */,
+				956930E8226472C400C8FDB8 /* PingPongAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

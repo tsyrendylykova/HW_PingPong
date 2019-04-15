@@ -19,9 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initGame;
 -(BOOL)isGameOver;
--(void)selectLightDiffuculty;
--(void)selectMediumDiffuculty;
--(void)selectHardDiffuculty;
+
+-(void)selectDifficulty: (CGFloat)difficulty;
 
 @end
 
