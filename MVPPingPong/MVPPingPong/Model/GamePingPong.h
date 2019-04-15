@@ -17,9 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat dx;
 @property (nonatomic) CGFloat dy;
 
--(instancetype)initGame;
 -(BOOL)isGameOver;
-
 -(void)selectDifficulty: (CGFloat)difficulty;
 
 @end

@@ -13,11 +13,11 @@
 -(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
 -(void)setComputerPlatformCenter;
 -(void)setBallCenterWithDx: (CGFloat)dx dy:(CGFloat)dy;
--(Boolean)isBallTouchRightOrLeftSide;
--(Boolean)isBallTouchMyPlatform;
--(Boolean)isBallTouchComputerPlatform;
--(Boolean)isBallTouchBottomSide;
--(Boolean)isBallTouchTopSide;
+-(BOOL)isBallTouchRightOrLeftSide;
+-(BOOL)isBallTouchMyPlatform;
+-(BOOL)isBallTouchComputerPlatform;
+-(BOOL)isBallTouchBottomSide;
+-(BOOL)isBallTouchTopSide;
 -(void)clearUIForNewGame;
 -(void)showSettingsView;
 -(void)hideSettingsView;

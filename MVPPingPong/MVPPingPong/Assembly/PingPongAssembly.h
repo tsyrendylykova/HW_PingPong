@@ -10,6 +10,6 @@
 
 @interface PingPongAssembly : NSObject
 
-- (UINavigationController *)assemblyPingPong;
++ (UIViewController *)assemblyPingPong;
 
 @end

@@ -10,11 +10,6 @@
 
 @implementation GamePingPong
 
--(instancetype)initGame {
-    self = [super init];
-    return self;
-}
-
 -(BOOL)isGameOver {
     if (self.myScore > 5 || self.computerScore > 5) {
         return YES;

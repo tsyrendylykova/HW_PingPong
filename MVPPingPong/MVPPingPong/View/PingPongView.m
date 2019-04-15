@@ -8,14 +8,6 @@
 
 #import "PingPongView.h"
 
-
-@interface PingPongView ()
-
-@property (nonatomic, strong) UILabel *labelScore;
-@property (nonatomic, strong) UILabel *descriptionScore;
-
-@end
-
 @implementation PingPongView
 
 - (void)viewDidLoad {
@@ -202,14 +194,14 @@
     self.ball.center = CGPointMake(self.ball.center.x + dx, self.ball.center.y + dy);
 }
 
--(Boolean)isBallTouchRightOrLeftSide {
+-(BOOL)isBallTouchRightOrLeftSide {
     if (self.ball.center.x + self.ball.frame.size.width / 2 > self.view.frame.size.width || self.ball.frame.origin.x < 0) {
         return YES;
     }
     return NO;
 }
 
--(Boolean)isBallTouchMyPlatform {
+-(BOOL)isBallTouchMyPlatform {
     if (self.ball.frame.origin.y + self.ball.frame.size.height >= self.myPlatform.frame.origin.y &&
         self.ball.frame.origin.x >= self.myPlatform.frame.origin.x &&
         self.ball.frame.origin.x + self.ball.frame.size.width <= self.myPlatform.frame.origin.x + self.myPlatform.frame.size.width) {
@@ -218,7 +210,7 @@
     return NO;
 }
 
--(Boolean)isBallTouchComputerPlatform {
+-(BOOL)isBallTouchComputerPlatform {
     if (self.ball.frame.origin.y <= 89 + self.computerPlatform.frame.size.height &&
         self.ball.frame.origin.x >= self.computerPlatform.frame.origin.x &&
         self.ball.frame.origin.x <= self.computerPlatform.frame.origin.x + self.computerPlatform.frame.size.width) {
@@ -227,14 +219,14 @@
     return NO;
 }
 
--(Boolean)isBallTouchBottomSide {
+-(BOOL)isBallTouchBottomSide {
     if (self.ball.center.y + self.ball.frame.size.height / 2 > self.view.frame.size.height) {
         return YES;
     }
     return NO;
 }
 
--(Boolean)isBallTouchTopSide {
+-(BOOL)isBallTouchTopSide {
     if (self.ball.frame.origin.y < 89) {
         return YES;
     }

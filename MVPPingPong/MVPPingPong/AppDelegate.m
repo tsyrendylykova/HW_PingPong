@@ -17,8 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    PingPongAssembly *rootVC = [[PingPongAssembly alloc] init];
-    self.window.rootViewController = [rootVC assemblyPingPong];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[PingPongAssembly assemblyPingPong]];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyWindow];
     return YES;
 }

@@ -12,11 +12,10 @@
 
 @class PresenterPingPong;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface PingPongView : UIViewController <PingPongViewProtocol>
 
 @property (nonatomic, strong) PresenterPingPong *presenter;
+@property (nonatomic, strong) UIView *settingsView;
 @property (nonatomic, strong) UIView *horizontalBorderView;
 @property (nonatomic, strong) UIView *verticalBorderView;
 @property (nonatomic, strong) UIView *ball;
@@ -24,18 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *myPlatform;
 @property (nonatomic, strong) UILabel *compScore;
 @property (nonatomic, strong) UILabel *myScore;
-@property (nonatomic, strong) UIView *settingsView;
 
 -(void)prepareTableUI;
 -(void)prepareSettingsView;
 -(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
 -(void)setComputerPlatformCenter;
 -(void)setBallCenterWithDx: (CGFloat)dx dy:(CGFloat)dy;
--(Boolean)isBallTouchRightOrLeftSide;
--(Boolean)isBallTouchMyPlatform;
--(Boolean)isBallTouchComputerPlatform;
--(Boolean)isBallTouchBottomSide;
--(Boolean)isBallTouchTopSide;
+-(BOOL)isBallTouchRightOrLeftSide;
+-(BOOL)isBallTouchMyPlatform;
+-(BOOL)isBallTouchComputerPlatform;
+-(BOOL)isBallTouchBottomSide;
+-(BOOL)isBallTouchTopSide;
 -(void)clearUIForNewGame;
 -(void)showSettingsView;
 -(void)hideSettingsView;
@@ -45,5 +43,3 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)showGameWinner:(NSString *)text;
 
 @end
-
-NS_ASSUME_NONNULL_END

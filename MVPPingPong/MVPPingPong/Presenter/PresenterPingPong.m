@@ -8,6 +8,13 @@
 
 #import "PresenterPingPong.h"
 
+@interface PresenterPingPong ()
+
+@property (nonatomic, assign) NSTimer *timerPlatform;
+@property (nonatomic, assign) NSTimer *timerBall;
+
+@end
+
 @implementation PresenterPingPong
 
 -(instancetype)initWithView: (PingPongView *)view model:(GamePingPong *)model {

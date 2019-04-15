@@ -13,13 +13,12 @@
 
 @implementation PingPongAssembly
 
-- (UINavigationController *)assemblyPingPong {
-    GamePingPong *game = [[GamePingPong alloc] initGame];
++ (UIViewController *)assemblyPingPong {
+    GamePingPong *game = [[GamePingPong alloc] init];
     PingPongView *view = [[PingPongView alloc] init];
     PresenterPingPong *presenter = [[PresenterPingPong alloc] initWithView:view model:game];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:view];
     view.presenter = presenter;
-    return navigationController;
+    return view;
 }
 
 @end

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MVPPingPong/Presenter/PresenterPingPong.m"
-            timestampString = "577015613.106355"
+            timestampString = "577044093.4215209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-ballTouchBottomSide"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MVPPingPong/Presenter/PresenterPingPong.m"
-            timestampString = "577015613.106452"
+            timestampString = "577044093.421693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-ballTouchBottomSide"
             landmarkType = "7">
          </BreakpointContent>
