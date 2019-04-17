@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface GamePingPong : NSObject
 
 @property (nonatomic) NSInteger computerScore;
@@ -21,5 +19,3 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)selectDifficulty: (CGFloat)difficulty;
 
 @end
-
-NS_ASSUME_NONNULL_END

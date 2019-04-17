@@ -29,7 +29,6 @@
 
 -(void)showUI {
     [self.view prepareTableUI];
-    [self.view prepareSettingsView];
 }
 
 -(void)startNewGame {
@@ -44,7 +43,6 @@
     }
     [self.view clearUIForNewGame];
     [self.view prepareTableUI];
-    [self.view prepareSettingsView];
     [self.view setScoresWithCompScore:self.game.computerScore myScore:self.game.myScore];
 }
 
@@ -84,6 +82,10 @@
     }
     
     [self.view setBallCenterWithDx: (CGFloat)self.game.dx dy:(CGFloat)self.game.dy];
+}
+
+-(void)hideSettingsView {
+    [self.view hideSettingsView];
 }
 
 -(void)moveComputerPlatformAI {

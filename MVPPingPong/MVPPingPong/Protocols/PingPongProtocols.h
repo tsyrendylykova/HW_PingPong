@@ -9,7 +9,6 @@
 @protocol PingPongViewProtocol <NSObject>
 
 -(void)prepareTableUI;
--(void)prepareSettingsView;
 -(void)setScoresWithCompScore: (NSInteger)compScore myScore:(NSInteger)myScore;
 -(void)setComputerPlatformCenter;
 -(void)setBallCenterWithDx: (CGFloat)dx dy:(CGFloat)dy;
@@ -35,5 +34,6 @@
 -(void)startTimer;
 -(void)pauseGame;
 -(void)selectDifficulty: (CGFloat)difficulty;
+-(void)hideSettingsView;
 
 @end

@@ -17,6 +17,7 @@
 		9569303B225B370700C8FDB8 /* PresenterPingPong.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569303A225B370700C8FDB8 /* PresenterPingPong.m */; };
 		95693045225B430A00C8FDB8 /* PingPongView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95693044225B430A00C8FDB8 /* PingPongView.m */; };
 		956930E8226472C400C8FDB8 /* PingPongAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 956930E7226472C400C8FDB8 /* PingPongAssembly.m */; };
+		9571FBEE2265CEEA00602FB4 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9571FBED2265CEEA00602FB4 /* SettingsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		956930E6226472C400C8FDB8 /* PingPongAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongAssembly.h; sourceTree = "<group>"; };
 		956930E7226472C400C8FDB8 /* PingPongAssembly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongAssembly.m; sourceTree = "<group>"; };
 		956930EA2264898C00C8FDB8 /* PingPongProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingPongProtocols.h; sourceTree = "<group>"; };
+		9571FBEC2265CEEA00602FB4 /* SettingsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
+		9571FBED2265CEEA00602FB4 /* SettingsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 			children = (
 				95693043225B430A00C8FDB8 /* PingPongView.h */,
 				95693044225B430A00C8FDB8 /* PingPongView.m */,
+				9571FBEC2265CEEA00602FB4 /* SettingsView.h */,
+				9571FBED2265CEEA00602FB4 /* SettingsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				95693033225B36B000C8FDB8 /* GamePingPong.m in Sources */,
 				9569302B225B364B00C8FDB8 /* main.m in Sources */,
 				9569303B225B370700C8FDB8 /* PresenterPingPong.m in Sources */,
+				9571FBEE2265CEEA00602FB4 /* SettingsView.m in Sources */,
 				9569301D225B364900C8FDB8 /* AppDelegate.m in Sources */,
 				956930E8226472C400C8FDB8 /* PingPongAssembly.m in Sources */,
 			);
